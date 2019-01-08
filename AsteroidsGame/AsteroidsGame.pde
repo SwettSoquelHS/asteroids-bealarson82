@@ -1,7 +1,7 @@
 /* * * * * * * * * * * * * * * * * * * * * * *
  Class variable declarations here
  */
-Spaceship player1;
+Spaceship player1 = new Spaceship();
 //Asteroid[] asteroids;
 //Star[] starField;
 
@@ -20,10 +20,12 @@ boolean SPACE_BAR;    //User is pressing space bar
  */
 public void setup() {
   size(640, 400);
+  background(#522089);
+  noStroke();
   
   //initialize your asteroid array and fill it
   
-  //initialize ship
+  player1.draw();
   
   //initialize starfield
 }

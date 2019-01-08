@@ -2,19 +2,11 @@
  All objects in this world that move must implemnt the Movalbe interface.
  */
 interface Movable {
-  /*
-    Return the x location of the Movable
-   */
+//Return the x location of the Movable
   float getX();
-
-  /*
-    Return the y location of the Movable
-   */
-  float getY();
-
-  /*
-    Return the direction of the Movable in degrees.
-   */
+//Return the y location of the Movable
+  float getY(){
+//    Return the direction of the Movable in degrees.
   float getDirection();
 
   /*
@@ -35,21 +27,14 @@ interface Movable {
   /* 
    Sets the direction of the Movable
    */
-  void setDirection(float newDirectionInDegrees);
+  void setDirection(float newDirectionInDegrees); 
+//   Sets the speed of the Movable
 
-  /* 
-   Sets the speed of the Movable
-   */
   void setSpeed(float newSpeed);
-
-  /*
-   Update the internals of the instance
-   */
+//   Update the internals of the instance
   void update(); 
+//    Display the isntance
 
-  /*
-    Display the isntance
-   */
   void show();
 
   /*
@@ -123,6 +108,34 @@ abstract class Mover {// implements Movable {
    */
   boolean collidingWith(Movable object){
      return false; 
+  }
+  
+  float getX(){
+    return X;
+  }
+  
+  float getY(){
+    return Y;
+  }
+  
+  float getDirection(){
+    return direction;
+  }
+  
+  float getRadius(){
+    return radius;
+  }
+  
+  float getSpeed(){
+    return speed;
+  }
+  
+  float setDirection(float newDirection){
+    direction = newDirection;
+  }
+  
+  float setSpeed(float newSpeed){
+    speed = newSpeed;
   }
   
   //TODO: Part I: implement the methods of Moveable interface - delete this comment
