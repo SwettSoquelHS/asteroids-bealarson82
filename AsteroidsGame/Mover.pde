@@ -5,7 +5,7 @@ interface Movable {
 //Return the x location of the Movable
   float getX();
 //Return the y location of the Movable
-  float getY(){
+  float getY();
 //    Return the direction of the Movable in degrees.
   float getDirection();
 
@@ -46,9 +46,6 @@ interface Movable {
 }
 //END OF Movable Interface
 
-
-
-
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  Abstract base class Mover 
  */
@@ -86,9 +83,29 @@ abstract class Mover {// implements Movable {
     Most of your movalbe objects should follow this pattern.
    */
   void update() {
+
+    if(ROTATE_LEFT == true)
+      direction -= 1.0;
+    if(ROTATE_RIGHT == true)
+      direction += 1.0;
+      
+    if(MOVE_FORWARD == true){
+      if(speed < 3){
+        speed += 0.3;
+      }
+    }else {
+      if(speed > 0){
+        speed -= 0.5;
+      }
+      if(speed < 0)
+        speed = 0;
+    }
+    
+    //////////////insert relocation of ship when off screen
+   
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
-
+    
     //todo: You need to decide what to do when X is less than 0 or greater than width
     //todo: You need to decide what to do when Y is less than 0 or greater than height
   }
@@ -130,11 +147,11 @@ abstract class Mover {// implements Movable {
     return speed;
   }
   
-  float setDirection(float newDirection){
+  void setDirection(float newDirection){
     direction = newDirection;
   }
   
-  float setSpeed(float newSpeed){
+  void setSpeed(float newSpeed){
     speed = newSpeed;
   }
   
