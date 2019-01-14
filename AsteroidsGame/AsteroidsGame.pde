@@ -3,7 +3,8 @@
  */
 Spaceship player1;
 //Asteroid[] asteroids;
-//Star[] starField;
+Star[] starField = new Star[200];
+float starX, starY, starSpeed, starSize;
 
 
 /*
@@ -28,6 +29,14 @@ public void setup() {
   player1 = new Spaceship(width/2.0, height/2.0,0,0);
   
   //initialize starfield
+  for(int i = 0; i < starField.length; i++){
+    starX = random(0,width);
+    starY = random(0,height);
+    starSize = random(1,2);
+    starSpeed = random(.5,1.0);
+    starField[i] = new Star(starX,starY,starSize,starSpeed);
+  }
+  
 }
 
 
@@ -37,7 +46,10 @@ public void draw() {
   player1.show();
 
   //Draw Starfield first 
-  //TODO: Part I
+  for(int i = 0; i < starField.length; i++){
+    starField[i].show();
+    starField[i].move();
+  }
   
   //Check bullet collisions
   //TODO: Part III or IV - for not just leave this comment

@@ -85,23 +85,32 @@ abstract class Mover {// implements Movable {
   void update() {
 
     if(ROTATE_LEFT == true)
-      direction -= 1.0;
+      direction -= 2.0;
     if(ROTATE_RIGHT == true)
-      direction += 1.0;
+      direction += 2.0;
       
     if(MOVE_FORWARD == true){
       if(speed < 3){
-        speed += 0.3;
+        speed += 2.0;
       }
     }else {
       if(speed > 0){
-        speed -= 0.5;
+        speed -= 2.0;
       }
       if(speed < 0)
         speed = 0;
     }
     
     //////////////insert relocation of ship when off screen
+    if(x < 0 || y > height){
+      x = width;
+      y = random(0,height);
+    }
+    
+    if(y < 0 || x > width){
+      y = height;
+      x = random(0,width);
+    }
    
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
