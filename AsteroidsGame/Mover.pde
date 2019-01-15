@@ -86,6 +86,7 @@ abstract class Mover {// implements Movable {
 
     if(ROTATE_LEFT == true)
       direction -= 2.0;
+      
     if(ROTATE_RIGHT == true)
       direction += 2.0;
       
@@ -101,7 +102,7 @@ abstract class Mover {// implements Movable {
         speed = 0;
     }
     
-    //////////////insert relocation of ship when off screen
+    //relocation of ship when off screen
     x = x+speed*(float)Math.cos(radians(direction));
     if(x > width)
       x = 0;
@@ -133,10 +134,13 @@ abstract class Mover {// implements Movable {
 
   /*
     TODO: Part 4: Implement collision detection
-   */
-  boolean collidingWith(Movable object){
-     return false; 
+
+  boolean collidingWith(Movable m){
+    float distance = dist(x, y, m.getX(), m.getY());
+    boolean touching = (radius + m.getRadius());
+    return touching; 
   }
+  */
   
   float getX(){
     return X;
