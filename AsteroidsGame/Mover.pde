@@ -102,16 +102,18 @@ abstract class Mover {// implements Movable {
     }
     
     //////////////insert relocation of ship when off screen
-    if(x < 0 || y > height){
+    x = x+speed*(float)Math.cos(radians(direction));
+    if(x > width)
+      x = 0;
+    if(x < 0)
       x = width;
-      y = random(0,height);
-    }
-    
-    if(y < 0 || x > width){
+    y = y + speed*(float)Math.sin(radians(direction));
+    if(y>height)
+      y = 0;
+    if(y < 0)
       y = height;
-      x = random(0,width);
-    }
-   
+    
+    
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
     
