@@ -9,6 +9,7 @@ class Spaceship extends Mover {
     translate(x,y);
     rotate(radians(direction));
     beginShape();
+    noStroke();
     rotate(radians(250));
     scale(.4);
 

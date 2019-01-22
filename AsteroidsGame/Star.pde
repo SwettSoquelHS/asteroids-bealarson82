@@ -16,6 +16,7 @@ class Star {
     x -= speed;
   }
   void show(){
+    noStroke();
     fill(255);
     ellipse(x,y,size*1.5,size*1.5);
   }

@@ -1,4 +1,4 @@
-class Asteroid extends Mover{
+class Asteroid extends Mover {
   float rotation;
  
   Asteroid(float x, float y, float speed, float size){
@@ -10,66 +10,34 @@ class Asteroid extends Mover{
       y = random(0,height);
     }
     x -= speed;
-  }
-  void show(){
-    pushMatrix();
-    translate(x,y);
-    rotate(radians(rotation));
-    fill(#8B6541);
-    beginShape();
-    rect(0,0,x,y);
-    endShape();
-    popMatrix();
-  }
-  
-}
-
-
-
-
-/*
-  Asteroid class
-    Should extend Mover class and implement show.
+    y -= speed;
     
-    Initially, your asteroid may just be a simple circle or square
-    but the final program should use "beginShap(), vertex(), and endShape()"
-    to render the asteroid.
-
-public class Asteroid extends Mover{   
-  float rotation;
-  float[] xPos = new float[5];
-  float[] yPos = new float[5];
-  
-  Asteroid(float x, float y){
-    this(x,y,0,0);
   }
-  
-  public Asteroid(float x, float y, float speed, float direction){
-    super(x,y,speed,direction);
-  }
-  
-  void update(){
-    super.update();
-    x = x + speed*(float)Math.cos(radians(direction));
-    y = y + speed*(float)Math.sin(radians(direction));
-    rotation += 2;
-  }
-  
   void show(){
     pushMatrix();
-    translate(x,y);
-    rotate(radians(rotation));
-    fill(#8B6541);
     beginShape();
-    vertex(5.0, 0.0);
-    vertex(0.0, 8.0);
-    vertex(-5.0, 0.0);
-    vertex(-5.0, 5.0);
+    translate(x,y);
+    scale(1.5);
+    beginShape();
+    rotate(radians(rotation));
+    stroke(#3E2B12);
+    strokeWeight(5);
+    fill(#4D3414);
+    vertex(20,60);
+    vertex(-10,70);
+    vertex(-15,90);
+    vertex(0,110);
+    vertex(30,100);
+    vertex(40,80);
+    vertex(20,60);
     endShape();
+    beginShape();
+    noStroke();
+    fill(#3E2B12);
+    ellipse(10,70,15,15);
+    ellipse(20,90,9,9);
+    ellipse(-10,90,12,12);
     popMatrix();
   }
   
- 
 }
-
-*/
