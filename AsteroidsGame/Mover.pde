@@ -80,7 +80,7 @@ abstract class Mover {// implements Movable {
   }
 
   /*
-    Most of your movalbe objects should follow this pattern.
+    Most of your movable objects should follow this pattern.
    */
   void update() {
 

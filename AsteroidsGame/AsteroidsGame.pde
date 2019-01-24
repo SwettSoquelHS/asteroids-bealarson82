@@ -3,7 +3,7 @@
  */
 Spaceship player1;
 Asteroid[] asteroids = new Asteroid[6];
-Star[] starField = new Star[200];
+Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
 float asteroidX, asteroidY, asteroidSpeed, asteroidSize;
 
@@ -50,7 +50,7 @@ public void setup() {
   for (int i = 0; i < starField.length; i++) {
     starX = random(0, width);
     starY = random(0, height);
-    starSize = random(1, 2);
+    starSize = random(1,2);
     starSpeed = random(.5, 1.0);
     starField[i] = new Star(starX, starY, starSize, starSpeed);
   }
