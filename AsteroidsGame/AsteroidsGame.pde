@@ -13,28 +13,32 @@ float asteroidX, asteroidY, asteroidSpeed, asteroidSize;
 boolean ROTATE_LEFT;  //User is pressing <-
 boolean ROTATE_RIGHT; //User is pressing ->
 boolean MOVE_FORWARD; //User is pressing ^ arrow
+boolean MOVE_BACKWARD;
 boolean SPACE_BAR;    //User is pressing space bar
+boolean HYPER;
 
 
 /* * * * * * * * * * * * * * * * * * * * * * *
  Initialize all of your variables and game state here
  */
 public void setup() {
-  size(840, 600);
+  size(800, 600);
   background(0);
   noStroke();
   MOVE_FORWARD = false;
+  MOVE_BACKWARD = false;
   ROTATE_LEFT = false;
   ROTATE_RIGHT = false;
   SPACE_BAR = false;
+  HYPER = false;
 
   //initialize your asteroid array and fill it
   for (int i = 0; i < asteroids.length; i++) {
     asteroidX = random(100, width);
     asteroidY = random(100, height);
-    asteroidSize = random(1, 2);
-    asteroidSpeed = random(5, 10);
-    asteroids[i] = new Asteroid(asteroidX, asteroidY, asteroidSize, asteroidSpeed);
+    asteroidSpeed = random(1, 2);
+    asteroidSize = random(5, 10);
+    asteroids[i] = new Asteroid(asteroidX, asteroidY, asteroidSpeed, asteroidSize);
   }  
 /* 
   asteroids = new Asteroid[3];
@@ -67,9 +71,37 @@ public void draw() {
     starField[i].move();
   }
   
+    if(ROTATE_LEFT == true)
+      player1.direction -= 2.0;
+      
+    if(ROTATE_RIGHT == true)
+      player1.direction += 2.0;
+      
+    if(MOVE_BACKWARD == true){
+      if(player1.speed > -3){
+        player1.speed -= 2.0;
+      }
+    }
+      
+    if(MOVE_FORWARD == true){
+      if(player1.speed < 3){
+        player1.speed += 2.0;
+      }
+    }else {
+      if(player1.speed > 0){
+        player1.speed -= 2.0;
+      }
+      if(player1.speed < 0)
+        player1.speed = 0;
+    }
+    if(HYPER == true){
+      player1.hyperSpace(player1);
+    }
+
+  
   for(int i = 0; i < asteroids.length; i++) {
+      asteroids[i].update();
       asteroids[i].show();
-      asteroids[i].move();
   }
 
 
@@ -112,12 +144,17 @@ void keyPressed() {
       ROTATE_RIGHT = true;
     } else if (keyCode == UP) {
       MOVE_FORWARD = true;
+    } else if(keyCode == DOWN){
+      MOVE_BACKWARD = true;
     }
   }
 
   //32 is spacebar
   if (keyCode == 32) {  
     SPACE_BAR = true;
+  }
+  if(keyCode == 72){
+    HYPER = true;
   }
 }
 
@@ -134,10 +171,15 @@ void keyReleased() {
       ROTATE_RIGHT = false;
     } else if (keyCode == UP) {
       MOVE_FORWARD = false;
+    } else if(keyCode == DOWN){
+      MOVE_BACKWARD = false;
     }
   }
   if (keyCode == 32) {
     SPACE_BAR = false;
+  }
+  if(keyCode == 72){
+    HYPER = false;
   }
 }
 /*

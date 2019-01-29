@@ -1,7 +1,12 @@
 class Spaceship extends Mover {
   
-  Spaceship(float x, float y, float speed, float direction) {  
+  public Spaceship(float x, float y){
+    super(x,y);
+  }
+  
+  public Spaceship(float x, float y, float speed, float direction) {  
     super(x, y, speed, direction);
+    radius = 60;
   }
 
   void show() {
@@ -40,4 +45,11 @@ class Spaceship extends Mover {
     endShape();
     popMatrix();
   }
+  
+  void hyperSpace(Spaceship hero) {
+    hero.x =(float)(Math.random()*800);
+    hero.y =(float)(Math.random()*600);
+    hero.direction =(float)(Math.random()*360);
+  }
+  
 }

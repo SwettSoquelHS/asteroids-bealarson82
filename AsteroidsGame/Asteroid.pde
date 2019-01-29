@@ -3,6 +3,7 @@ class Asteroid extends Mover {
  
   Asteroid(float x, float y, float speed, float size){
     super(x, y , speed, size);
+    radius = 20;
   }
   void move(){
     if(x < 0 || y > height){
@@ -39,5 +40,6 @@ class Asteroid extends Mover {
     ellipse(-10,90,12,12);
     popMatrix();
   }
+  
   
 }

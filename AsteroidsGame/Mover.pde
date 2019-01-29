@@ -42,14 +42,14 @@ interface Movable {
    the movable referred to by object.  *Note* An object should not
    be able to collide with iteself.
    */
-  boolean collidingWith(Movable object);
+boolean collidingWith(Movable object);
 }
 //END OF Movable Interface
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  Abstract base class Mover 
  */
-abstract class Mover {// implements Movable {
+abstract class Mover implements Movable {
 
   protected float x, y;
   protected float speed;
@@ -61,8 +61,6 @@ abstract class Mover {// implements Movable {
     Default Mover, not actually moving and directionless
   */
   Mover(float x, float y) {
-    //The line below shows how we can 
-    //link this constructor to the constructor below through "this"
     this(x, y, 0, 0);  
   }
 
@@ -83,32 +81,12 @@ abstract class Mover {// implements Movable {
     Most of your movable objects should follow this pattern.
    */
   void update() {
-
-    if(ROTATE_LEFT == true)
-      direction -= 2.0;
-      
-    if(ROTATE_RIGHT == true)
-      direction += 2.0;
-      
-    if(MOVE_FORWARD == true){
-      if(speed < 3){
-        speed += 2.0;
-      }
-    }else {
-      if(speed > 0){
-        speed -= 2.0;
-      }
-      if(speed < 0)
-        speed = 0;
-    }
     
     //relocation of ship when off screen
-    x = x+speed*(float)Math.cos(radians(direction));
     if(x > width)
       x = 0;
     if(x < 0)
       x = width;
-    y = y + speed*(float)Math.sin(radians(direction));
     if(y>height)
       y = 0;
     if(y < 0)
@@ -134,41 +112,33 @@ abstract class Mover {// implements Movable {
 
   /*
     TODO: Part 4: Implement collision detection
-
+*/
   boolean collidingWith(Movable m){
     float distance = dist(x, y, m.getX(), m.getY());
     boolean touching = (radius + m.getRadius());
     return touching; 
   }
-  */
   
   float getX(){
     return X;
   }
-  
   float getY(){
     return Y;
   }
-  
   float getDirection(){
     return direction;
   }
-  
   float getRadius(){
     return radius;
   }
-  
   float getSpeed(){
     return speed;
   }
-  
   void setDirection(float newDirection){
     direction = newDirection;
   }
-  
   void setSpeed(float newSpeed){
     speed = newSpeed;
   }
   
-  //TODO: Part I: implement the methods of Moveable interface - delete this comment
 }
