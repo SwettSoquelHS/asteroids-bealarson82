@@ -5,7 +5,7 @@ Spaceship player1;
 Asteroid[] asteroids = new Asteroid[6];
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
-float asteroidX, asteroidY, asteroidSpeed, asteroidSize;
+float asteroidX, asteroidY, asteroidSpeed, asteroidSize, asteroidRadius;
 
 /*
   Track User keyboard input
@@ -38,17 +38,12 @@ public void setup() {
     asteroidY = random(100, height);
     asteroidSpeed = random(1, 2);
     asteroidSize = random(5, 10);
-    asteroids[i] = new Asteroid(asteroidX, asteroidY, asteroidSpeed, asteroidSize);
+    asteroidRadius = 50;
+    asteroids[i] = new Asteroid(random(asteroidX), random(asteroidY), random(asteroidSpeed), random(asteroidSize), asteroidRadius);
   }  
-/* 
-  asteroids = new Asteroid[3];
-  for (int i = 0; i<=asteroids.length; i++) {
-    float speed = (float)Math.random()*1.0 + .02;
-    int size = (int)Math.random()*2 + 1;
-  }
-*/
 
-  player1 = new Spaceship(width/2.0, height/2.0, 0, 0);
+
+  player1 = new Spaceship(width/2.0, height/2.0, 0, 0, 20);
 
   //initialize starfield
   for (int i = 0; i < starField.length; i++) {
@@ -70,6 +65,12 @@ public void draw() {
     starField[i].show();
     starField[i].move();
   }
+  for(int i = 0; i < asteroids.length; i++){
+    asteroids[i].show();
+    asteroids[i].update();
+  }
+  
+  checkOnAsteroids();
   
     if(ROTATE_LEFT == true)
       player1.direction -= 2.0;
@@ -98,11 +99,6 @@ public void draw() {
       player1.hyperSpace(player1);
     }
 
-  
-  for(int i = 0; i < asteroids.length; i++) {
-      asteroids[i].update();
-      asteroids[i].show();
-  }
 
 
   //Check bullet collisions
@@ -182,17 +178,16 @@ void keyReleased() {
     HYPER = false;
   }
 }
-/*
+
 void checkOnAsteroids() {
-  //call in draw- asteroids internals
   for (int i = 0; i < asteroids.length; i++) {
     Asteroid a1 = asteroids[i];
     for (int j = 0; j < asteroids.length; j++) {
       Asteroid a2 = asteroids[j]; 
       if (a1 != a2 && a1.collidingWith(a2)) {
-        //do something
+        a1.direction = a1.direction*-50;
+        a2.direction = a2.direction*50;
       }
     }
   }
 }  
-*/

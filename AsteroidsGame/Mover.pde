@@ -42,7 +42,7 @@ interface Movable {
    the movable referred to by object.  *Note* An object should not
    be able to collide with iteself.
    */
-boolean collidingWith(Movable object);
+boolean collidingWith(Movable m);
 }
 //END OF Movable Interface
 
@@ -61,20 +61,24 @@ abstract class Mover implements Movable {
     Default Mover, not actually moving and directionless
   */
   Mover(float x, float y) {
-    this(x, y, 0, 0);  
+    this(x, y, 0, 0, 0);  
+    speed = 0;
+    direction = 0;
+    myColor = 255;
+    radius = 10.0;
   }
 
   /*
     Mover constructor specifying x, y position along with its speed and
     direction (in degrees)
   */
-  Mover(float x, float y, float speed, float direction) {
+  Mover(float x, float y, float speed, float direction, float radius) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.direction = direction;
-    myColor = 225;
-    radius = 0.0;
+    this.radius = radius;
+    myColor = 255;
   }
 
   /*
@@ -83,10 +87,12 @@ abstract class Mover implements Movable {
   void update() {
     
     //relocation of ship when off screen
+    x = x + speed*(float)Math.cos(radians(direction));
     if(x > width)
       x = 0;
     if(x < 0)
       x = width;
+    y = y + speed*(float)Math.sin(radians(direction));
     if(y>height)
       y = 0;
     if(y < 0)
@@ -96,8 +102,6 @@ abstract class Mover implements Movable {
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
     
-    //todo: You need to decide what to do when X is less than 0 or greater than width
-    //todo: You need to decide what to do when Y is less than 0 or greater than height
   }
 
 
@@ -114,8 +118,13 @@ abstract class Mover implements Movable {
     TODO: Part 4: Implement collision detection
 */
   boolean collidingWith(Movable m){
+    if(this == m) { 
+      return false;
+    }
+    
     float distance = dist(x, y, m.getX(), m.getY());
-    boolean touching = (radius + m.getRadius());
+    
+    boolean touching = distance <(radius + m.getRadius());
     return touching; 
   }
   

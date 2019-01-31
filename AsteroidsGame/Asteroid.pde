@@ -1,14 +1,13 @@
 class Asteroid extends Mover {
   float rotation;
  
-  Asteroid(float x, float y, float speed, float size){
-    super(x, y , speed, size);
-    radius = 20;
+  Asteroid(float x, float y, float speed, float size, float radius){
+    super(x, y , speed, size, radius);
   }
   void move(){
     if(x < 0 || y > height){
       x = width;
-      y = random(0,height);
+      y = random(height);
     }
     x -= speed;
     y -= speed;

@@ -1,7 +1,11 @@
 class Bullet extends Mover {
   
-  Bullet(float x, float y, float speed, float direction){
-     super(x, y, speed, direction);
+  Bullet(float x, float y){
+    super(x, y, 0, 0, 0);
+  }
+  
+  Bullet(float x, float y, float speed, float direction, float radius){
+     super(x, y, speed, direction, radius);
      radius = 6;
   }
   
@@ -13,7 +17,7 @@ class Bullet extends Mover {
     rotate(radians(direction));
     fill(#ED1818);
     scale(.25);
-    rect(-40, -2, 40, 6);
+    rect(-40, -2, 40, 6, 9);
     
     
     endShape();
