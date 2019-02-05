@@ -5,7 +5,6 @@ Spaceship player1;
 Asteroid[] asteroids = new Asteroid[6];
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
-float asteroidX, asteroidY, asteroidSpeed, asteroidSize, asteroidRadius;
 
 /*
   Track User keyboard input
@@ -34,16 +33,11 @@ public void setup() {
 
   //initialize your asteroid array and fill it
   for (int i = 0; i < asteroids.length; i++) {
-    asteroidX = random(100, width);
-    asteroidY = random(100, height);
-    asteroidSpeed = random(1, 2);
-    asteroidSize = random(5, 10);
-    asteroidRadius = 50;
-    asteroids[i] = new Asteroid(random(asteroidX), random(asteroidY), random(asteroidSpeed), random(asteroidSize), asteroidRadius);
+    asteroids[i] = new Asteroid((float)(Math.random()*width), (float)(Math.random()*height), (float)(Math.random()+.5), (float)(Math.random()*360), (float)(Math.random()*360), 0);
   }  
 
 
-  player1 = new Spaceship(width/2.0, height/2.0, 0, 0, 20);
+  player1 = new Spaceship(width/2.0, height/2.0, 0, 0);
 
   //initialize starfield
   for (int i = 0; i < starField.length; i++) {
@@ -184,9 +178,11 @@ void checkOnAsteroids() {
     Asteroid a1 = asteroids[i];
     for (int j = 0; j < asteroids.length; j++) {
       Asteroid a2 = asteroids[j]; 
-      if (a1 != a2 && a1.collidingWith(a2)) {
+      if (a1 != a2 && a1.collidingWith(a2) && a1.collide < 0 && a1.collide < 0) {
         a1.direction = a1.direction*-50;
-        a2.direction = a2.direction*50;
+        a2.direction = a2.direction*+50;
+        a1.collide = 10;
+        a2.collide = 10;
       }
     }
   }

@@ -61,7 +61,7 @@ abstract class Mover implements Movable {
     Default Mover, not actually moving and directionless
   */
   Mover(float x, float y) {
-    this(x, y, 0, 0, 0);  
+    this(x, y, 0, 0);  
     speed = 0;
     direction = 0;
     myColor = 255;
@@ -72,13 +72,13 @@ abstract class Mover implements Movable {
     Mover constructor specifying x, y position along with its speed and
     direction (in degrees)
   */
-  Mover(float x, float y, float speed, float direction, float radius) {
+  Mover(float x, float y, float speed, float direction) {
     this.x = x;
     this.y = y;
     this.speed = speed;
     this.direction = direction;
-    this.radius = radius;
     myColor = 255;
+    radius = 0.0;
   }
 
   /*
@@ -92,6 +92,8 @@ abstract class Mover implements Movable {
       x = 0;
     if(x < 0)
       x = width;
+      
+      
     y = y + speed*(float)Math.sin(radians(direction));
     if(y>height)
       y = 0;
@@ -118,13 +120,8 @@ abstract class Mover implements Movable {
     TODO: Part 4: Implement collision detection
 */
   boolean collidingWith(Movable m){
-    if(this == m) { 
-      return false;
-    }
-    
-    float distance = dist(x, y, m.getX(), m.getY());
-    
-    boolean touching = distance <(radius + m.getRadius());
+    float distance = dist(x, y, m.getX(), m.getY()); 
+    boolean touching = distance <radius + m.getRadius();
     return touching; 
   }
   

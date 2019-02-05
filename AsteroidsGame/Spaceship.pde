@@ -4,8 +4,9 @@ class Spaceship extends Mover {
     super(x,y);
   }
   
-  public Spaceship(float x, float y, float speed, float direction, float radius) {  
-    super(x, y, speed, direction, radius);
+  public Spaceship(float x, float y, float speed, float direction) {  
+    super(x, y, speed, direction);
+    radius = 15;
   }
 
   void show() {

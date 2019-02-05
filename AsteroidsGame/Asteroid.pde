@@ -1,18 +1,18 @@
 class Asteroid extends Mover {
   float rotation;
+  int collide;
+  
+  Asteroid(float x, float y){
+    super(x,y);
+  }
  
-  Asteroid(float x, float y, float speed, float size, float radius){
-    super(x, y , speed, size, radius);
+  Asteroid(float x, float y, float speed, float direction, float rotation, int collide){
+    super(x, y , speed, direction);
+    radius = 20;
+    this.rotation = rotation;
+    collide = 0;
   }
-  void move(){
-    if(x < 0 || y > height){
-      x = width;
-      y = random(height);
-    }
-    x -= speed;
-    y -= speed;
-    
-  }
+  
   void show(){
     pushMatrix();
     beginShape();
@@ -23,20 +23,20 @@ class Asteroid extends Mover {
     stroke(#3E2B12);
     strokeWeight(5);
     fill(#4D3414);
-    vertex(20,60);
-    vertex(-10,70);
-    vertex(-15,90);
-    vertex(0,110);
-    vertex(30,100);
-    vertex(40,80);
-    vertex(20,60);
+    vertex(10,-25);
+    vertex(-20,-15);
+    vertex(-25,5);
+    vertex(-10,25);
+    vertex(20,15);
+    vertex(30,-5);
+    vertex(10,-25);
     endShape();
     beginShape();
     noStroke();
     fill(#3E2B12);
-    ellipse(10,70,15,15);
-    ellipse(20,90,9,9);
-    ellipse(-10,90,12,12);
+    ellipse(0,-15,15,15);
+    ellipse(10,15,9,9);
+    ellipse(0,5,12,12);
     popMatrix();
   }
   
