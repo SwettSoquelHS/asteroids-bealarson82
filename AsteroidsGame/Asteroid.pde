@@ -13,6 +13,26 @@ class Asteroid extends Mover {
     collide = 0;
   }
   
+  void update(){
+    x = x + speed*(float)Math.cos(radians(direction));
+    if(x > width + 30)
+      x = 0;
+    if(x < 0)
+      x = width + 30;
+      
+      
+    y = y + speed*(float)Math.sin(radians(direction));
+    if(y>height + 100)
+      y = 0;
+    if(y < 0)
+      y = height + 100;
+    
+    
+    x = x + speed*(float)Math.cos(radians(direction));
+    y = y + speed*(float)Math.sin(radians(direction));
+  }
+    
+  
   void show(){
     pushMatrix();
     beginShape();
