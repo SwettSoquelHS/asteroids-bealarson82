@@ -2,7 +2,7 @@
  Class variable declarations here
  */
 Spaceship player1;
-Asteroid[] asteroids = new Asteroid[6];
+Asteroid[] asteroids = new Asteroid[5];
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
 
@@ -54,7 +54,7 @@ public void draw() {
   player1.update();
   player1.show();
 
-  //Draw Starfield first 
+  //Draw Starfield
   for (int i = 0; i < starField.length; i++) {
     starField[i].show();
     starField[i].move();
@@ -178,11 +178,9 @@ void checkOnAsteroids() {
     Asteroid a1 = asteroids[i];
     for (int j = 0; j < asteroids.length; j++) {
       Asteroid a2 = asteroids[j]; 
-      if (a1 != a2 && a1.collidingWith(a2) && a1.collide < 0 && a1.collide < 0) {
-        a1.direction = a1.direction*-50;
-        a2.direction = a2.direction*+50;
-        a1.collide = 10;
-        a2.collide = 10;
+      if (a1 != a2 && a1.collidingWith(a2)) {
+        a1.direction = -50;
+        a2.direction = 50;
       }
     }
   }

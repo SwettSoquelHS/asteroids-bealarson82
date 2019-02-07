@@ -65,7 +65,7 @@ abstract class Mover implements Movable {
     speed = 0;
     direction = 0;
     myColor = 255;
-    radius = 10.0;
+    radius = 0.0;
   }
 
   /*

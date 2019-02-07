@@ -8,7 +8,7 @@ class Asteroid extends Mover {
  
   Asteroid(float x, float y, float speed, float direction, float rotation, int collide){
     super(x, y , speed, direction);
-    radius = 20;
+    radius = 50;
     this.rotation = rotation;
     collide = 0;
   }
@@ -30,6 +30,9 @@ class Asteroid extends Mover {
     
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
+    rotation += 1;
+    collide--;
+    
   }
     
   
@@ -37,9 +40,8 @@ class Asteroid extends Mover {
     pushMatrix();
     beginShape();
     translate(x,y);
-    scale(1.5);
+    scale(1.8);
     beginShape();
-    rotate(radians(rotation));
     stroke(#3E2B12);
     strokeWeight(5);
     fill(#4D3414);
