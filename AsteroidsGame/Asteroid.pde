@@ -1,16 +1,14 @@
 class Asteroid extends Mover {
   float rotation;
-  int collide;
   
   Asteroid(float x, float y){
     super(x,y);
   }
  
-  Asteroid(float x, float y, float speed, float direction, float rotation, int collide){
+  Asteroid(float x, float y, float speed, float direction, float rotation){
     super(x, y , speed, direction);
     radius = 50;
     this.rotation = rotation;
-    collide = 0;
   }
   
   void update(){
@@ -31,8 +29,6 @@ class Asteroid extends Mover {
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
     rotation += 1;
-    collide--;
-    
   }
     
   

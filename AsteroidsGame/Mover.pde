@@ -121,7 +121,7 @@ abstract class Mover implements Movable {
 */
   boolean collidingWith(Movable m){
     float distance = dist(x, y, m.getX(), m.getY()); 
-    boolean touching = distance <radius + m.getRadius();
+    boolean touching = distance < radius + m.getRadius();
     return touching; 
   }
   

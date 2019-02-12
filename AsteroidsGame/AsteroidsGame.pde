@@ -1,8 +1,9 @@
+import java.util.ArrayList;
 /* * * * * * * * * * * * * * * * * * * * * * *
  Class variable declarations here
  */
 Spaceship player1;
-Asteroid[] asteroids = new Asteroid[5];
+ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
 
@@ -32,8 +33,8 @@ public void setup() {
   HYPER = false;
 
   //initialize your asteroid array and fill it
-  for (int i = 0; i < asteroids.length; i++) {
-    asteroids[i] = new Asteroid((float)(Math.random()*width), (float)(Math.random()*height), (float)(Math.random()+.5), (float)(Math.random()*360), (float)(Math.random()*360), 0);
+  for (int i = 0; i < 4; i++) {
+     asteroids.add(new Asteroid((float)(Math.random()*800), (float)(Math.random()*600), (float)(Math.random()+.5), (float)(Math.random()*360), (float)(Math.random()*360)));
   }  
 
 
@@ -59,9 +60,18 @@ public void draw() {
     starField[i].show();
     starField[i].move();
   }
-  for(int i = 0; i < asteroids.length; i++){
-    asteroids[i].show();
-    asteroids[i].update();
+  for(int i = 0; i < 4; i++){
+    Asteroid rock = (Asteroid)asteroids.get(i);
+    rock.show();
+    rock.update();
+      if(rock.getX() >800)
+       rock.x = 0;
+     if(rock.getX() <0)
+       rock.x = 800;
+     if(rock.getY()>600)
+       rock.y = 0;
+     if(rock.getY() <0)
+       rock.y = 600;
   }
   
   checkOnAsteroids();
@@ -174,13 +184,13 @@ void keyReleased() {
 }
 
 void checkOnAsteroids() {
-  for (int i = 0; i < asteroids.length; i++) {
-    Asteroid a1 = asteroids[i];
-    for (int j = 0; j < asteroids.length; j++) {
-      Asteroid a2 = asteroids[j]; 
+  for (int i = 0; i < asteroids.size(); i++) {
+    Asteroid a1 = asteroids.get(i);
+    for (int j = 0; j < asteroids.size(); j++) {
+      Asteroid a2 = asteroids.get(j); 
       if (a1 != a2 && a1.collidingWith(a2)) {
-        a1.direction = -50;
-        a2.direction = 50;
+        a1.direction = a1.direction - 50;
+        a2.direction = a2.direction + 50;
       }
     }
   }
