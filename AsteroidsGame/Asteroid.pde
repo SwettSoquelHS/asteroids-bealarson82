@@ -5,10 +5,9 @@ class Asteroid extends Mover {
     super(x,y);
   }
  
-  Asteroid(float x, float y, float speed, float direction, float rotation){
-    super(x, y , speed, direction);
+  Asteroid(float x, float y, float speed, float direction, float radius){
+    super(x, y , speed, direction,radius);
     radius = 50;
-    this.rotation = rotation;
   }
   
   void update(){
@@ -38,6 +37,7 @@ class Asteroid extends Mover {
     translate(x,y);
     scale(1.8);
     beginShape();
+    /*
     stroke(#3E2B12);
     strokeWeight(5);
     fill(#4D3414);
@@ -55,6 +55,8 @@ class Asteroid extends Mover {
     ellipse(0,-15,15,15);
     ellipse(10,15,9,9);
     ellipse(0,5,12,12);
+    */
+    ellipse(0,0,50,50);
     popMatrix();
   }
   

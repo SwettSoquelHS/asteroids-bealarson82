@@ -1,11 +1,11 @@
 class Bullet extends Mover {
   
   Bullet(float x, float y){
-    super(x, y, 0, 0);
+    super(x, y, 0, 0, 0);
   }
   
   Bullet(float x, float y, float speed, float direction, float radius){
-     super(x, y, speed, direction);
+     super(x, y, speed, direction,radius);
      radius = 6;
   }
   
