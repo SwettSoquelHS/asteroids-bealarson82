@@ -38,7 +38,7 @@ public void setup() {
   }  
 
 
-  player1 = new Spaceship(width/2.0, height/2.0, 0, 0, 20);
+  player1 = new Spaceship(width/2.0, height/2.0, 0, 0, 10);
 
   //initialize starfield
   for (int i = 0; i < starField.length; i++) {
@@ -183,8 +183,7 @@ void checkOnAsteroids() {
       Asteroid a2 = asteroids.get(j); 
       if (a1 != a2 && a1.collidingWith(a2)) {
         a1.setDirection(a1.getDirection() + 90);
-        //a1.setSpeed(a1.getSpeed() * 2);
-      //  a2.direction = a2.direction + 50;
+        //a1.setSpeed(a1.getSpeed()+10);
       }
     }
   }
