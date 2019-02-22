@@ -33,12 +33,12 @@ public void setup() {
   HYPER = false;
 
   //initialize your asteroid array and fill it
-  for (int i = 0; i < 4; i++) {
-     asteroids.add(new Asteroid((float)(Math.random()*800), (float)(Math.random()*600), (float)(Math.random()+.5), (float)(Math.random()*360), (float)(Math.random()*360)));
+  for (int i = 0; i < 6; i++) {
+     asteroids.add(new Asteroid((float)(Math.random()*800), (float)(Math.random()*600), (float)(Math.random()+.5), (float)(Math.random()*360), 50));
   }  
 
 
-  player1 = new Spaceship(width/2.0, height/2.0, 0, 0);
+  player1 = new Spaceship(width/2.0, height/2.0, 0, 0, 20);
 
   //initialize starfield
   for (int i = 0; i < starField.length; i++) {
@@ -60,18 +60,11 @@ public void draw() {
     starField[i].show();
     starField[i].move();
   }
-  for(int i = 0; i < 4; i++){
+  for(int i = 0; i < 6; i++){
     Asteroid rock = (Asteroid)asteroids.get(i);
     rock.show();
     rock.update();
-      if(rock.getX() >800)
-       rock.x = 0;
-     if(rock.getX() <0)
-       rock.x = 800;
-     if(rock.getY()>600)
-       rock.y = 0;
-     if(rock.getY() <0)
-       rock.y = 600;
+
   }
   
   checkOnAsteroids();
@@ -189,8 +182,9 @@ void checkOnAsteroids() {
     for (int j = 0; j < asteroids.size(); j++) {
       Asteroid a2 = asteroids.get(j); 
       if (a1 != a2 && a1.collidingWith(a2)) {
-        a1.direction = a1.direction - 50;
-        a2.direction = a2.direction + 50;
+        a1.setDirection(a1.getDirection() + 90);
+        //a1.setSpeed(a1.getSpeed() * 2);
+      //  a2.direction = a2.direction + 50;
       }
     }
   }
