@@ -120,8 +120,8 @@ abstract class Mover implements Movable {
     if(this == m){
       return false;
     }
-    
     float distance = dist(x, y, m.getX(), m.getY()); 
+    println(distance);
     if((radius + m.getRadius()) > distance){
       return true;
     }

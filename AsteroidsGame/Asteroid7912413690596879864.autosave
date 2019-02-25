@@ -34,8 +34,8 @@ class Asteroid extends Mover {
     pushMatrix();
     //beginShape();
     translate(x,y);
-//    scale(1.8);
- /*
+    //scale(1.8);
+    /*
     stroke(#3E2B12);
     strokeWeight(5);
     fill(#4D3414);
@@ -53,8 +53,9 @@ class Asteroid extends Mover {
     ellipse(0,-15,15,15);
     ellipse(10,15,9,9);
     ellipse(0,5,12,12);
+    endShape();
     */
-    ellipse(0,0,radius,radius);
+    ellipse(0,0,100,100);
     popMatrix();
   }
   
