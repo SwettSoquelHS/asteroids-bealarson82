@@ -3,11 +3,12 @@ import java.util.ArrayList;
  Class variable declarations here
  */
 Spaceship player1;
-ArrayList<Asteroid> asteroids = new ArrayList<Asteroid>();
+ArrayList<Asteroid> asteroids;
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
+ArrayList<Bullet> bullets;
 
-int NUM_ASTEROIDS = 2;
+int NUM_ASTEROIDS = 3;
 
 /*
   Track User keyboard input
@@ -34,16 +35,18 @@ public void setup() {
   SPACE_BAR = false;
   HYPER = false;
 
+  asteroids = new ArrayList<Asteroid>();
+
   //initialize your asteroid array and fill it
   for (int i = 0; i < NUM_ASTEROIDS; i++) {
-    asteroids.add(
-      new Asteroid((float)(Math.random()*800), 
-        (float)(Math.random()*600), 
-        (float)(Math.random()+.5), 
-        (float)(Math.random()*360), 150));
+    asteroids.add(new Asteroid(
+      (float)(Math.random()*800), 
+      (float)(Math.random()*600), 
+      (float)(Math.random()+ 1.5), 
+      (float)(Math.random()*360),
+      60));
   }  
-
-
+  
   player1 = new Spaceship(width/2.0, height/2.0, 0, 0, 10);
 
   //initialize starfield
@@ -58,6 +61,10 @@ public void setup() {
 
 public void draw() {
   background(0);
+  String lives = "Lives: 3";
+  textSize(20);
+  fill(#FEFF1A);
+  text(lives, 650,20);
   player1.update();
   player1.show();
 
@@ -73,6 +80,7 @@ public void draw() {
   }
 
   checkOnAsteroids();
+  checkOnShip();
 
   if (ROTATE_LEFT == true)
     player1.direction -= 2.0;
@@ -186,11 +194,28 @@ void checkOnAsteroids() {
     Asteroid a1 = asteroids.get(i);
     for (int j = 0; j < asteroids.size(); j++) {
       Asteroid a2 = asteroids.get(j); 
+      //if (i!=j) {
+      //  println("a1 = " + a1 + " vs a2 = " + a2 + " distance = " + dist(a1.getX(), a1.getY(), a2.getX(), a2.getY()));
+      //}
       if (a1 != a2 && a1.collidingWith(a2)) {
+
         a1.setDirection(a1.getDirection() + 90);
+        //a1.setSpeed(a1.getSpeed() + 1);
         println("collision");
-        //a1.setSpeed(a1.getSpeed()+10);
+        //a2.setDirection(a2.getDirection() - 90);
       }
     }
   }
+}
+
+void checkOnShip(){
+ for(int i = 0; i < asteroids.size(); i++){
+   Asteroid ass = asteroids.get(i);
+   if(ass.collidingWith(player1)){
+     player1.shipHit(player1);
+     player1.shipLife(3);
+   }
+   
+ }
+  
 }  

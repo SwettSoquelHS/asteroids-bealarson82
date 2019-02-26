@@ -52,4 +52,27 @@ class Spaceship extends Mover {
     hero.direction =(float)(Math.random()*360);
   }
   
+  void shipHit(Spaceship ship){
+    ship.x = 400;
+    ship.y = 300;
+    ship.direction = 0;
+  }
+//gotta fix this up   
+  void shipLife(int life){
+    life = 3;
+    life--;
+  }
+  
+  void fire(){
+  
+    
+  }
+  
+  
+  
+  
+  
+  
+  
+  
 }

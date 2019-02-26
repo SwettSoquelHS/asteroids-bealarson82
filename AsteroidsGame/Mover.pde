@@ -2,11 +2,11 @@
  All objects in this world that move must implemnt the Movalbe interface.
  */
 interface Movable {
-//Return the x location of the Movable
+  //Return the x location of the Movable
   float getX();
-//Return the y location of the Movable
+  //Return the y location of the Movable
   float getY();
-//    Return the direction of the Movable in degrees.
+  //    Return the direction of the Movable in degrees.
   float getDirection();
 
   /*
@@ -28,12 +28,12 @@ interface Movable {
    Sets the direction of the Movable
    */
   void setDirection(float newDirectionInDegrees); 
-//   Sets the speed of the Movable
+  //   Sets the speed of the Movable
 
   void setSpeed(float newSpeed);
-//   Update the internals of the instance
+  //   Update the internals of the instance
   void update(); 
-//    Display the isntance
+  //    Display the isntance
 
   void show();
 
@@ -42,7 +42,7 @@ interface Movable {
    the movable referred to by object.  *Note* An object should not
    be able to collide with iteself.
    */
-boolean collidingWith(Movable m);
+  boolean collidingWith(Movable m);
 }
 //END OF Movable Interface
 
@@ -59,15 +59,15 @@ abstract class Mover implements Movable {
 
   /*
     Default Mover, not actually moving and directionless
-  */
+   */
   Mover(float x, float y) {
-    this(x, y, 0, 0,0);  
+    this(x, y, 0, 0, 0);
   }
 
   /*
     Mover constructor specifying x, y position along with its speed and
-    direction (in degrees)
-  */
+   direction (in degrees)
+   */
   Mover(float x, float y, float speed, float direction, float radius) {
     this.x = x;
     this.y = y;
@@ -75,79 +75,80 @@ abstract class Mover implements Movable {
     this.direction = direction;
     this.radius = radius;
     myColor = 255;
-    radius = 0.0;
   }
 
   /*
     Most of your movable objects should follow this pattern.
    */
   void update() {
-    
+
     //relocation of ship when off screen
     x = x + speed*(float)Math.cos(radians(direction));
-    if(x > width)
+    if (x > width)
       x = 0;
-    if(x < 0)
+    if (x < 0)
       x = width;
-      
-      
+
+
     y = y + speed*(float)Math.sin(radians(direction));
-    if(y>height)
+    if (y>height)
       y = 0;
-    if(y < 0)
+    if (y < 0)
       y = height;
-    
-    
-    x = x + speed*(float)Math.cos(radians(direction));
-    y = y + speed*(float)Math.sin(radians(direction));
-    
+
+
+    //x = x + speed*(float)Math.cos(radians(direction));
+    //y = y + speed*(float)Math.sin(radians(direction));
   }
 
 
 
   /*
     Save this for your subclasses to override.
-    but notice how it is tagged with abstract, meaning 
-    it is incomplete. (It's like an I.O.U.)
+   but notice how it is tagged with abstract, meaning 
+   it is incomplete. (It's like an I.O.U.)
    */
   abstract void show();
 
 
   /*
     TODO: Part 4: Implement collision detection
-*/
-  boolean collidingWith(Movable m){
-    if(this == m){
+   */
+  boolean collidingWith(Movable m) {
+    if (this == m) {
       return false;
     }
     float distance = dist(x, y, m.getX(), m.getY()); 
-    println(distance);
-    if((radius + m.getRadius()) > distance){
+    
+    if ((radius + m.getRadius()) > distance) {
       return true;
     }
     return false;
   }
-  
-  float getX(){
-    return X;
+
+  float getX() {
+    return x;
   }
-  float getY(){
-    return Y;
+  float getY() {
+    return y;
   }
-  float getDirection(){
+  float getDirection() {
     return direction;
   }
-  float getRadius(){
+  float getRadius() {
     return radius;
   }
-  float getSpeed(){
+  float getSpeed() {
     return speed;
   }
-  void setDirection(float newDirection){
+  void setDirection(float newDirection) {
     direction = newDirection;
   }
-  void setSpeed(float newSpeed){
+  void setSpeed(float newSpeed) {
     speed = newSpeed;
   }
-  
+
+  public String toString() {
+    return "["+x+", "+y+"]";
+  }
 }
