@@ -1,4 +1,4 @@
-class Bullet extends Mover {
+class Bullet extends Spaceship {
   
   Bullet(float x, float y){
     super(x, y, 0, 0, 0);

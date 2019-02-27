@@ -6,16 +6,15 @@ class Asteroid extends Mover {
   }
  
   Asteroid(float x, float y, float speed, float direction, float radius){
-    super(x, y , speed, direction,radius);
+    super(x, y , speed, direction, radius);
   }
-  
+ 
   void update(){
     x = x + speed*(float)Math.cos(radians(direction));
     if(x > width + 30)
       x = 0;
     if(x < 0)
-      x = width + 30;
-      
+      x = width + 30;   
       
     y = y + speed*(float)Math.sin(radians(direction));
     if(y>height + 100)
@@ -27,8 +26,8 @@ class Asteroid extends Mover {
     x = x + speed*(float)Math.cos(radians(direction));
     y = y + speed*(float)Math.sin(radians(direction));
     rotation += 1;
-  }
-    
+
+  }  
   
   void show(){
     pushMatrix();
