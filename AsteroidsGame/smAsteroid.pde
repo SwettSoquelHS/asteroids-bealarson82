@@ -36,7 +36,7 @@ class smAsteroid extends Mover{
     pushMatrix();
     beginShape();
     translate(x,y);
-    scale(.75);
+    scale(1.0);
     beginShape();
     stroke(#3E2B12);
     strokeWeight(5);
