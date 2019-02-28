@@ -1,7 +1,6 @@
-Bullet myBullet = new Bullet(width/2,height/2,0,0,20);
+ Bullet myBullet = new Bullet(width/2,height/2,0,0,20);
 
 class Spaceship extends Mover {
-  //Bullet myBullet = new Bullet(width/2,height/2,0,0,10);
   
   public Spaceship(float x, float y){
     super(x,y);
@@ -67,17 +66,18 @@ class Spaceship extends Mover {
     ship.direction = 0;
   }
 //gotta fix this up   
+/*
   void shipLife(int life){
     life = 3;
     life--;
   }
+*/
  
   void fire(){
     if(myBullet != null && !myBullet.isAlive()){
-      myBullet.setSpeed(3);
-      new Bullet(x,y,5,0,0);
+    // myBullet.setSpeed(3);
     }
-    myBullet.setSpeed(3);
+    myBullet.setSpeed(7);
     
   } 
   

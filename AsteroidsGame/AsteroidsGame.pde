@@ -6,7 +6,6 @@ Spaceship player1;
 ArrayList<Asteroid> asteroids;
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
-//ArrayList<Bullet> bullets;
 
 int NUM_ASTEROIDS = 3;
 
@@ -114,6 +113,10 @@ public void draw() {
   if (HYPER == true) {
     player1.hyperSpace(player1);
   }
+  
+  if(SPACE_BAR == true){
+    player1.fire();
+  }
 
 
 
@@ -201,15 +204,11 @@ void checkOnAsteroids() {
     Asteroid a1 = asteroids.get(i);
     for (int j = 0; j < asteroids.size(); j++) {
       Asteroid a2 = asteroids.get(j); 
-      //if (i!=j) {
-      //  println("a1 = " + a1 + " vs a2 = " + a2 + " distance = " + dist(a1.getX(), a1.getY(), a2.getX(), a2.getY()));
-      //}
+
       if (a1 != a2 && a1.collidingWith(a2)) {
 
         a1.setDirection(a1.getDirection() + 90);
-        //a1.setSpeed(a1.getSpeed() + 1);
         println("collision");
-        //a2.setDirection(a2.getDirection() - 90);
       }
     }
   }
@@ -220,7 +219,7 @@ void checkOnShip(){
    Asteroid ass = asteroids.get(i);
    if(ass.collidingWith(player1)){
      player1.shipHit(player1);
-     player1.shipLife(3);
+     //player1.shipLife(3);
    }
    
  }

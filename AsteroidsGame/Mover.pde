@@ -135,11 +135,11 @@ abstract class Mover implements Movable {
   float getDirection() {
     return direction;
   }
-  float getRadius() {
-    return radius;
-  }
   float getSpeed() {
     return speed;
+  }
+  float getRadius() {
+    return radius;
   }
   void setDirection(float newDirection) {
     direction = newDirection;
