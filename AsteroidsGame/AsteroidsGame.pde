@@ -6,7 +6,7 @@ Spaceship player1;
 ArrayList<Asteroid> asteroids;
 Star[] starField = new Star[2000];
 float starX, starY, starSpeed, starSize;
-ArrayList<Bullet> bullets;
+//ArrayList<Bullet> bullets;
 
 int NUM_ASTEROIDS = 3;
 
@@ -65,8 +65,13 @@ public void draw() {
   textSize(20);
   fill(#FEFF1A);
   text(lives, 650,20);
+  
   player1.update();
   player1.show();
+  
+  //myBullet.show();
+  //myBullet.update();
+
 
   //Draw Starfield
   for (int i = 0; i < starField.length; i++) {
@@ -81,7 +86,8 @@ public void draw() {
 
   checkOnAsteroids();
   checkOnShip();
-
+  
+  
   if (ROTATE_LEFT == true)
     player1.direction -= 2.0;
 
@@ -158,6 +164,7 @@ void keyPressed() {
   //32 is spacebar
   if (keyCode == 32) {  
     SPACE_BAR = true;
+    player1.fire();
   }
   if (keyCode == 72) {
     HYPER = true;
