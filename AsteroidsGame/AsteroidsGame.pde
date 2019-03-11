@@ -60,13 +60,6 @@ public void setup() {
 
 public void draw() {
   background(0);
-  String lives = "Lives: 3";
-  textSize(20);
-  fill(#FEFF1A);
-  text(lives, 650,20);
-  
-  player1.update();
-  player1.show();
   
   //myBullet.show();
   //myBullet.update();
@@ -77,6 +70,10 @@ public void draw() {
     starField[i].show();
     starField[i].move();
   }
+  
+  player1.update();
+  player1.show();
+  
   for (int i = 0; i < NUM_ASTEROIDS; i++) {
     Asteroid rock = (Asteroid)asteroids.get(i);
     rock.show();
@@ -86,6 +83,18 @@ public void draw() {
   checkOnAsteroids();
   checkOnShip();
   
+  for(int i = 0; i < NUM_ASTEROIDS; i++){
+     Asteroid ass = asteroids.get(i);
+     player1.asteroidHit(ass);
+  }
+  
+  if(NUM_ASTEROIDS == 0){
+      pushMatrix();
+      textSize(100);
+      fill(#FEFF1A);
+      text("YOU WON!", 100, 100);
+      popMatrix();
+  }
   
   if (ROTATE_LEFT == true)
     player1.direction -= 2.0;
